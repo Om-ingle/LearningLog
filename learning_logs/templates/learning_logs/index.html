@@ -1,0 +1,133 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  {% tailwind_css %}
+  {% load static %} 
+  <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+</head>
+<body>
+
+<!-- This header section is going to be used throughout the website 
+ ------------------------------------------------------------------------>
+<section class="bg-[url('/static/img/diary_in_grass.jpg')] bg-cover bg-no-repeat h-full flex flex-col justify-between">
+
+
+      <section class="py-4 flex items-center w-full bg-black text-white bg-opacity-80">
+            <div class="px-10">
+                  <p><a href="{% url 'learning_logs:index' %}" class="text-4xl font-serif">Learning Log</a></p>
+            </div>
+            <div class="flex flex-auto gap-3 items-center justify-end px-10">
+                  <p><a href="{% url 'learning_logs:topics' %}" class="font-serif">Topics</a></p>
+                  {% if user.is_authenticated %}
+                        <p>
+                        <form method="post" action="{% url 'users:logout' %}" class="font-serif ">
+                        {% csrf_token %}
+                        <button type="submit" onclick="alert('You have been successfully logged out. You will be redirected to homepage.')">Logout</button>
+                        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+                        </form>
+                        </p>
+                  <p>
+                  {% else %}
+                  <a href="{% url 'users:login' %}" class="font-serif">Login</a>
+                  <a href="{% url 'users:register' %}" class="font-serif">Register</a>
+                  {% endif %}
+                  </p>
+                  </ul>
+            </div>
+      </section>
+
+
+      <section class="backdrop-blur-sm   p-[2%] w-full">      
+                  
+                        <h1 class="text-4xl text-white font-sans font-extrabold  ">Unlock Your Learning Potential with Learning Log.</h1><br>
+                        <p class="text-2xl text-white">Track your progress, gain insights, and accelerate your growth journey.</p>
+            
+      </section>
+
+      
+      <footer class="bg-black text-white bg-opacity-80 py-4 flex flex-col justify-center items-center gap-y-5 w-full">
+            <div>
+            <p>© 2024 LearningLog. All rights reserved.</p>
+            </div>
+            <div class="flex gap-x-2">
+            <a href="https://www.linkedin.com/in/divesh-kshirsagar?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BoYCcCnxpQl2Oq5acNebkWg%3D%3D"><img src="/static/img/linkedin_social_icon.png" alt="linkedin-icon" class="size-8"></a>
+            <a href="#"><img src="/static/img/youtube_icon.png" alt="youtube-icon" class="size-8"></a>
+            <a href="#"><img src="/static/img/instagram_icon.png" alt="instagram-icon" class="size-8"></a>
+            </div>
+      </footer>
+  
+
+</section>
+
+
+
+</body>
+</html>
+
+
+<!-- 
+/* CSS HEX */
+--seasalt: #F9F8F6ff;
+--asparagus: #779E4Aff;
+--chinese-violet: #73678Bff;
+--aureolin: #F3E02Eff;
+--battleship-gray: #9C9886ff;
+--silver: #BFC4C7ff;
+--asparagus-2: #7A9B4Bff;
+--khaki: #AEA996ff;
+
+/* CSS HSL */
+--seasalt: hsla(40, 20%, 97%, 1);
+--asparagus: hsla(88, 36%, 45%, 1);
+--chinese-violet: hsla(260, 15%, 47%, 1);
+--aureolin: hsla(54, 89%, 57%, 1);
+--battleship-gray: hsla(49, 10%, 57%, 1);
+--silver: hsla(202, 7%, 76%, 1);
+--asparagus-2: hsla(85, 35%, 45%, 1);
+--khaki: hsla(47, 13%, 64%, 1);
+
+/* SCSS HEX */
+$seasalt: #F9F8F6ff;
+$asparagus: #779E4Aff;
+$chinese-violet: #73678Bff;
+$aureolin: #F3E02Eff;
+$battleship-gray: #9C9886ff;
+$silver: #BFC4C7ff;
+$asparagus-2: #7A9B4Bff;
+$khaki: #AEA996ff;
+
+/* SCSS HSL */
+$seasalt: hsla(40, 20%, 97%, 1);
+$asparagus: hsla(88, 36%, 45%, 1);
+$chinese-violet: hsla(260, 15%, 47%, 1);
+$aureolin: hsla(54, 89%, 57%, 1);
+$battleship-gray: hsla(49, 10%, 57%, 1);
+$silver: hsla(202, 7%, 76%, 1);
+$asparagus-2: hsla(85, 35%, 45%, 1);
+$khaki: hsla(47, 13%, 64%, 1);
+
+/* SCSS RGB */
+$seasalt: rgba(249, 248, 246, 1);
+$asparagus: rgba(119, 158, 74, 1);
+$chinese-violet: rgba(115, 103, 139, 1);
+$aureolin: rgba(243, 224, 46, 1);
+$battleship-gray: rgba(156, 152, 134, 1);
+$silver: rgba(191, 196, 199, 1);
+$asparagus-2: rgba(122, 155, 75, 1);
+$khaki: rgba(174, 169, 150, 1);
+
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+$gradient-right: linear-gradient(90deg, #F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+$gradient-bottom: linear-gradient(180deg, #F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+$gradient-left: linear-gradient(270deg, #F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+$gradient-top-right: linear-gradient(45deg, #F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+$gradient-bottom-right: linear-gradient(135deg, #F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+$gradient-top-left: linear-gradient(225deg, #F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+$gradient-bottom-left: linear-gradient(315deg, #F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+$gradient-radial: radial-gradient(#F9F8F6ff, #779E4Aff, #73678Bff, #F3E02Eff, #9C9886ff, #BFC4C7ff, #7A9B4Bff, #AEA996ff);
+-->

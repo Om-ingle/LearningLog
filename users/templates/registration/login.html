@@ -1,0 +1,97 @@
+{% load static tailwind_tags %}
+{% tailwind_css %}
+{% load tailwind_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Login</title>
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+</head> 
+<body class="text-center flex flex-col items-center justify-center bg-[url('/static/img/magazine.jpg')] bg-cover " >
+        <section class="bg-blue-200 items-center flex flex-col justify-center p-[5%]  gap-5 fixed rounded-2xl ">
+            <h1 class="font-serif font-semibold text-4xl mb-6 mt-6 flex-auto"><a href="{% url 'learning_logs:index' %}">Learning Log</a></h1>
+            <form method="post" action="{% url 'users:login' %}" class=" w-full flex-auto  rounded-3xl">
+                {% load crispy_forms_tags %}
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="bg-black text-white rounded-full px-9 py-1 hover:bg-white hover:text-black mt-5 flex-auto">Login</button>
+                <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+            </form>
+            <p class="text-red-800 font-semibold flex-auto"><a href="{% url 'users:register' %}">New? Register here.</a></p>
+            <div class="flex gap-x-4 flex-auto">
+                <a href="https://www.linkedin.com/in/divesh-kshirsagar?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BoYCcCnxpQl2Oq5acNebkWg%3D%3D"><img src="/static/img/linkedin_social_icon.png" alt="linkedin-icon" class="size-8 "></a>
+                <a href="#"><img src="/static/img/youtube_icon.png" alt="youtube-icon" class="size-8"></a>
+                <a href="#"><img src="/static/img/instagram_icon.png" alt="instagram-icon" class="size-8"></a>
+            </div>
+       </section>
+</body>
+</html>
+
+
+
+<!-- color pallete
+
+/* CSS HEX */
+--taupe-gray: #9B969Bff;
+--raisin-black: #2D2520ff;
+--coffee: #684935ff;
+--timberwolf: #CECDCAff;
+--beaver: #A19385ff;
+--silver: #BDB7B2ff;
+--taupe-gray-2: #8E8684ff;
+
+/* CSS HSL */
+--taupe-gray: hsla(300, 2%, 60%, 1);
+--raisin-black: hsla(23, 17%, 15%, 1);
+--coffee: hsla(24, 32%, 31%, 1);
+--timberwolf: hsla(45, 4%, 80%, 1);
+--beaver: hsla(30, 13%, 58%, 1);
+--silver: hsla(27, 8%, 72%, 1);
+--taupe-gray-2: hsla(12, 4%, 54%, 1);
+
+/* SCSS HEX */
+$taupe-gray: #9B969Bff;
+$raisin-black: #2D2520ff;
+$coffee: #684935ff;
+$timberwolf: #CECDCAff;
+$beaver: #A19385ff;
+$silver: #BDB7B2ff;
+$taupe-gray-2: #8E8684ff;
+
+/* SCSS HSL */
+$taupe-gray: hsla(300, 2%, 60%, 1);
+$raisin-black: hsla(23, 17%, 15%, 1);
+$coffee: hsla(24, 32%, 31%, 1);
+$timberwolf: hsla(45, 4%, 80%, 1);
+$beaver: hsla(30, 13%, 58%, 1);
+$silver: hsla(27, 8%, 72%, 1);
+$taupe-gray-2: hsla(12, 4%, 54%, 1);
+
+/* SCSS RGB */
+$taupe-gray: rgba(155, 150, 155, 1);
+$raisin-black: rgba(45, 37, 32, 1);
+$coffee: rgba(104, 73, 53, 1);
+$timberwolf: rgba(206, 205, 202, 1);
+$beaver: rgba(161, 147, 133, 1);
+$silver: rgba(189, 183, 178, 1);
+$taupe-gray-2: rgba(142, 134, 132, 1);
+
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff);
+$gradient-right: linear-gradient(90deg, #9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff);
+$gradient-bottom: linear-gradient(180deg, #9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff);
+$gradient-left: linear-gradient(270deg, #9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff);
+$gradient-top-right: linear-gradient(45deg, #9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff);
+$gradient-bottom-right: linear-gradient(135deg, #9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff);
+$gradient-top-left: linear-gradient(225deg, #9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff);
+$gradient-bottom-left: linear-gradient(315deg, #9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff);
+$gradient-radial: radial-gradient(#9B969Bff, #2D2520ff, #684935ff, #CECDCAff, #A19385ff, #BDB7B2ff, #8E8684ff); 
+
+
+
+bg-[#CECDCAff]
+-->

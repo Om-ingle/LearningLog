@@ -1,0 +1,67 @@
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% tailwind_css %}
+  {% load static %} 
+  <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+  </head>
+
+
+<body class="flex flex-col justify-between bg-[#8a8893]  ">
+
+  <section class=" bg-black bg-opacity-45 text-white flex items-center py-4">
+    <div class="px-8">
+      <p><a href="{% url 'learning_logs:index' %}" class="text-4xl font-serif">Learning Log</a></p>
+    </div>
+    <div class="flex flex-auto gap-3 items-center justify-end px-8">
+      <p><a href="{% url 'learning_logs:topics' %}" class="font-serif">Topics</a></p>
+        {% if user.is_authenticated %}
+            <p>
+              <form method="post" action="{% url 'users:logout' %}" class="font-serif ">
+              {% csrf_token %}
+              <button type="submit" onclick="alert('You have been successfully logged out.')">Logout</button>
+              <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+              </form>
+            </p>
+      <p>
+        {% else %}
+        <a href="{% url 'users:login' %}" class="font-serif">Login</a>
+        <a href="{% url 'users:register' %}" class="font-serif">Register</a>
+        {% endif %}
+      </p>
+      </ul>
+    </div>
+  </section>
+  {% block content %}
+
+  {% endblock content %}
+
+  
+  <footer class="bg-black bg-opacity-45 text-white flex flex-col justify-center items-center gap-y-5 py-4 mt-[50px]">
+    <div>
+      <p>© 2024 LearningLog. All rights reserved.</p>
+    </div>
+    <div class="flex gap-x-2">
+      <a href="https://www.linkedin.com/in/divesh-kshirsagar?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BoYCcCnxpQl2Oq5acNebkWg%3D%3D"><img src="/static/img/linkedin_social_icon.png" alt="linkedin-icon" class="size-8"></a>
+      <a href="#"><img src="/static/img/youtube_icon.png" alt="youtube-icon" class="size-8"></a>
+      <a href="#"><img src="/static/img/instagram_icon.png" alt="instagram-icon" class="size-8"></a>
+    </div>
+</footer>  
+
+  
+</body>
+</html>
+
+
+<!-- 
+/* CSS HEX */
+--rose-quartz: #A498A4ff;
+--eerie-black: #21251Bff;
+--moss-green: #959976ff;
+--fern-green: #65803Dff;
+--black-olive: #29301Dff;
+-->

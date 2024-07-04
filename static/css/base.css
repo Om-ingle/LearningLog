@@ -1,0 +1,25 @@
+/* 
+    color pallete
+
+    #C2C2C2 silver
+    #5A4932 millbrook
+    #387591 calypso
+    #64645C stormdust
+*/
+
+/*Model Fixes
+-----------------------------------------------*/
+html{
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+
+body{
+    margin: 0%;
+    height: 100%;
+}
+

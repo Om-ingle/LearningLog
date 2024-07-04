@@ -1,0 +1,23 @@
+{% extends "learning_logs/base.html" %}
+
+{% load static tailwind_tags %}
+
+{% load tailwind_filters %}
+
+{% block content %}
+<section class="flex flex-col justify-between h-full">
+  
+  <main class="flex flex-col items-center">
+    <p class="uppercase text-4xl font-serif  mt-5 "><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+    <form action="{% url 'learning_logs:new_entry' topic.id %}" method='post' class="px-14 py-10 my-4 w-11/12">
+        {% csrf_token %}
+        {% load crispy_forms_tags %}
+        {{ form|crispy }}
+        <p class="text-center"><button name='submit' class="text-red-800 font-semibold">Add Entry</button></p>
+    </form>
+  </main>
+
+</section>
+
+{% endblock content %}
+

@@ -1,0 +1,39 @@
+{% extends 'learning_logs/base.html' %}
+{% block content %}
+<section class="flex flex-col justify-between ">
+    
+    <main class="">
+        <div class="p-10 text-center">
+            <h2 class="uppercase text-4xl font-serif font-semibold text-white mb-5 ">{{ topic }}</h2>
+            <p class="text-red-700 font-bold text-xl underline"><a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a></p>
+        </div>
+      
+        <article class="flex flex-col justify-center items-center">
+            {% for entry in entries %}
+                <div class="border border-black border-solid px-14 py-10 my-4 w-11/12 bg-white">
+                    <p class="mb-5 font-semibold">{{ entry.date_added|date:'M d, Y H:i' }}</p>
+                    <p>{{ entry.text|linebreaks }}</p>
+                    <p class="mt-5 font-semibold text-red-800 underline" ><a href="{% url 'learning_logs:edit_entry' entry.id %}" class="">Edit entry</a></p>
+                </div>
+            {% empty %}
+                <p>There are no entries for this topic yet.</p>
+            {% endfor %}
+        </article>
+        <button class="scroll-to-top fixed bottom-4 right-4 bg-green-700 text-white rounded-full px-4 py-2 hover:opacity-70 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7" />
+            </svg>
+          </button>
+    </main>
+
+</section>  
+
+<script>
+    const scrollToTopButton = document.querySelector('.scroll-to-top');
+  
+    scrollToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+{% endblock content %}
+
